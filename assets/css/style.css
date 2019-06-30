@@ -7,6 +7,24 @@
    
 }
 
+.triviaImage{
+    position: relative;
+    height: 200px;
+    width: 300px;
+    top: 251px;
+    
+}
+
+.questionBlock{
+    position: absolute;
+    top: 319px;
+    left: 652px;
+    background-color: black;
+    width: 427px;
+    height: 176px;
+}
+
+
 @media only screen and (max-width: 640px) {
     
     .container{
