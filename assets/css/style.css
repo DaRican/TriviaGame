@@ -15,14 +15,53 @@
     
 }
 
-.questionBlock{
+#questionBlock{
     position: absolute;
-    top: 319px;
-    left: 652px;
-    background-color: black;
-    width: 427px;
-    height: 176px;
+    top: 324px;
+    left: 503px;
+    background-color: transparent;
+    width: 571px;
+    height: 140px;
+    font-size: 40px;
+    text-align: center;
+    color: rgb(25, 83, 207);
+    font-weight: bolder;
+    padding-top: 35px;
 }
+
+#answerSelections{
+    width: 331px;
+    height: 250px;
+    position: absolute;
+    top: 249px;
+    left: 1083px;
+    background-color: transparent;
+    opacity: .5;
+    color: white;
+    margin: 0px auto;
+
+}
+
+
+
+
+.answerOptions{
+    position: relative;
+    width: 80%;
+    height: 45px;
+    color: white;
+    font-weight: bolder;
+    font-size: 15px;
+    background-color: navy;
+    box-shadow: 5px 5px; 
+    margin: 8px auto;
+    left: 30px;
+    top: -2px;
+
+
+}
+
+
 
 
 @media only screen and (max-width: 640px) {
