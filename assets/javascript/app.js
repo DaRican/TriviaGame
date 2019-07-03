@@ -143,59 +143,99 @@ $(document).ready(function () {
     questionArray.push(question13);
     questionArray.push(question14);
 
-    /* Create input selections for the answer options in "answerSelections" DIV */
-    var randQuestionNumber = Math.floor(Math.random() * questionArray.length);
-
-    console.log(randQuestionNumber);
-
-    var answerInput = $("<box id=btnAnswer class=answerOptions list=selections>");
-
-    var wrongAnswerOneInput = $("<box id=btnWrongOne class=answerOptions list=selections>");
-    var wrongAnswerTwoInput = $("<box id=btnWrongTwo class=answerOptions list=selections>");
-    var wrongAnswerThreeInput = $("<box id=btnWrongThree class=answerOptions list=selections>");
-
-    var correctAnswer = (questionArray[randQuestionNumber].answer);
-    var wrongAnswer1 = (questionArray[randQuestionNumber].incorrectOne);
-    var wrongAnswer2 = (questionArray[randQuestionNumber].incorrectTwo);
-    var wrongAnswer3 = (questionArray[randQuestionNumber].incorrectThree);
 
 
+    function mainPage() {
+        $('#questionBlock').css({
+            "top": "325px"
 
-    /* Create an array that hold the answer selection variables, so we can 
-    call them in a random order for our gameplay loop  */
+        });
+        $('#questionBlock').text("Baseball Trivia");
+        // $('#answerSelections').css({
+        //     "left": '985px',
+        //     "top": '350px',
+        //     'margin': '0px auto'
+        // });
+        $('#answerSelections').text("Hit START to begin");
+        var startButton = $("<div id=btnStart >");
+        $('#answerSelections').append(startButton);
 
-    var selectionsArray = []
 
-    selectionsArray.push(correctAnswer);
-    selectionsArray.push(wrongAnswer1);
-    selectionsArray.push(wrongAnswer2);
-    selectionsArray.push(wrongAnswer3);
-
-    selectionRandomizer = Math.floor(Math.random() * selectionsArray);
+        $('#btnStart').text("START");
+        $('#btnStart').on('click', gameStart);
 
 
 
+    }
+
+    mainPage();
+
+
+
+    function gameStart() {
+
+        /* Create input selections for the answer options in "answerSelections" DIV */
+        $('#container').empty();
+        $('#questionBlock').empty();
+        $('#answerSelections').empty();
+
+
+
+
+        var randQuestionNumber = Math.floor(Math.random() * questionArray.length);
+
+        console.log(randQuestionNumber);
+
+        var answerInput = $("<div id=btnAnswer class=answerOptions list=selections>");
+
+        var wrongAnswerOneInput = $("<div id=btnWrongOne class=answerOptions list=selections>");
+        var wrongAnswerTwoInput = $("<div id=btnWrongTwo class=answerOptions list=selections>");
+        var wrongAnswerThreeInput = $("<div id=btnWrongThree class=answerOptions list=selections>");
+
+        var correctAnswer = (questionArray[randQuestionNumber].answer);
+        var wrongAnswer1 = (questionArray[randQuestionNumber].incorrectOne);
+        var wrongAnswer2 = (questionArray[randQuestionNumber].incorrectTwo);
+        var wrongAnswer3 = (questionArray[randQuestionNumber].incorrectThree);
+
+
+
+        /* Create an array that hold the answer selection variables, so we can 
+        call them in a random order for our gameplay loop  */
+
+        var selectionsArray = []
+
+        selectionsArray.push(correctAnswer);
+        selectionsArray.push(wrongAnswer1);
+        selectionsArray.push(wrongAnswer2);
+        selectionsArray.push(wrongAnswer3);
+
+        selectionRandomizer = Math.floor(Math.random() * selectionsArray);
 
 
 
 
 
 
-    $("#questionBlock").text(questionArray[randQuestionNumber].question);
-
-
-    $("#answerSelections").append(answerInput);
-    $("#btnAnswer").text(correctAnswer);
-    $("#answerSelections").append(wrongAnswerOneInput);
-    $('#btnWrongOne').text(wrongAnswer1);
-    $("#answerSelections").append(wrongAnswerTwoInput);
-    $('#btnWrongTwo').text(wrongAnswer2);
-    $("#answerSelections").append(wrongAnswerThreeInput);
-    $('#btnWrongThree').text(wrongAnswer3);
 
 
 
-    console.log(correctAnswer)
+        $("#questionBlock").text(questionArray[randQuestionNumber].question);
+
+
+        $("#answerSelections").append(answerInput);
+        $("#btnAnswer").text(correctAnswer);
+        $("#answerSelections").append(wrongAnswerOneInput);
+        $('#btnWrongOne').text(wrongAnswer1);
+        $("#answerSelections").append(wrongAnswerTwoInput);
+        $('#btnWrongTwo').text(wrongAnswer2);
+        $("#answerSelections").append(wrongAnswerThreeInput);
+        $('#btnWrongThree').text(wrongAnswer3);
+
+
+
+        console.log(correctAnswer)
+
+    }
 
 
 
