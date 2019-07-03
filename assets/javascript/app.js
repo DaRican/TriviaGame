@@ -151,26 +151,60 @@ $(document).ready(function () {
 
         });
         $('#questionBlock').text("Baseball Trivia");
-        // $('#answerSelections').css({
-        //     "left": '985px',
-        //     "top": '350px',
-        //     'margin': '0px auto'
-        // });
+
         $('#answerSelections').text("Hit START to begin");
         var startButton = $("<div id=btnStart >");
         $('#answerSelections').append(startButton);
 
 
         $('#btnStart').text("START");
-        $('#btnStart').on('click', gameStart);
+        $('#btnStart').on('click', mainPageDelay);
 
 
 
     }
 
     mainPage();
+    /* 
+    ASSIGN VARIABLES FOR THE FIRST TIMER AT THE BEGINNING OF THE GAME
+    */
+    var number = 6;
+    var intervalId;
+    var gameTimer = 31;
+
+    function mainPageDelay() {
+        $('#container').empty();
+        $('#questionBlock').empty();
+        $('#answerSelections').empty();
 
 
+
+        function run() {
+            clearInterval(intervalId);
+            intervalId = setInterval(decrement, 1000);
+
+
+        }
+
+
+
+        run();
+
+
+    }
+
+    function decrement() {
+        number--;
+        console.log("decrement");
+
+        $('#questionBlock').html(number);
+
+        if (number < 0) {
+            gameStart();
+            clearInterval(intervalId);
+
+        }
+    }
 
     function gameStart() {
 
@@ -178,9 +212,6 @@ $(document).ready(function () {
         $('#container').empty();
         $('#questionBlock').empty();
         $('#answerSelections').empty();
-
-
-
 
         var randQuestionNumber = Math.floor(Math.random() * questionArray.length);
 
@@ -234,6 +265,35 @@ $(document).ready(function () {
 
 
         console.log(correctAnswer)
+
+        function run() {
+            console.log("In Game Run");
+            clearInterval(intervalId);
+            intervalId = setInterval(decrement, 1000);
+
+
+        }
+
+
+
+        run();
+
+        function decrement() {
+            gameTimer--;
+            console.log("In Game Timer");
+            var inGameTimer = $('<div id=gameTimeLeft>');
+            $('container').html(inGameTimer);
+
+            $('#gameTimeLeft').html(gameTimer);
+
+            if (number < 0) {
+                gameStart();
+                clearInterval(intervalId);
+
+            }
+        }
+
+
 
     }
 
