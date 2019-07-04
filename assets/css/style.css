@@ -3,6 +3,7 @@ body {
     height: 800px;
     font-family: 'Righteous', cursive;
     margin: 20px auto;
+    
 
 }
 
@@ -13,6 +14,7 @@ body {
     background-image: url("../images/yankee-stadium.jpg") ;
     margin: 25px;
     background-size: 100% 100%;
+    
    
 }
 
@@ -75,6 +77,38 @@ body {
     margin-left: 19%;
     margin-top: 8%;
     top: 10%;
+}
+
+#gameTimeLeft{
+
+    position: relative;
+    width: 80%;
+    height: 20%;
+    color: white;
+    font-weight: bolder;
+    font-size: 51px;
+    font-family: 'Righteous', cursive;
+    background-color: transparent;
+    margin: 8px auto;
+    margin-left: 94%;
+    margin-top: -17%;
+    
+}
+
+#firstTimerDiv{
+
+    position: relative;
+    margin-top: 2%;
+    margin-left: 21%;
+    background-color: transparent;
+    width: 30%;
+    height: 28%;
+    font-size: 80px;
+    font-family: 'Righteous', cursive;
+    text-align: center;
+    color: rgb(25, 83, 207);
+    font-weight: bolder;
+
 }
 
 

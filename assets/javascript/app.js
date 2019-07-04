@@ -170,7 +170,7 @@ $(document).ready(function () {
     */
     var number = 6;
     var intervalId;
-    var gameTimer = 31;
+
 
     function mainPageDelay() {
         $('#container').empty();
@@ -196,8 +196,10 @@ $(document).ready(function () {
     function decrement() {
         number--;
         console.log("decrement");
+        var firstTimerDiv = $('<div id=firstTimerDiv>');
+        $('#questionBlock').html(firstTimerDiv);
+        $('#firstTimerDiv').html(number);
 
-        $('#questionBlock').html(number);
 
         if (number < 0) {
             gameStart();
@@ -205,6 +207,20 @@ $(document).ready(function () {
 
         }
     }
+
+    /* 
+        DECLARE VARIABLES FOR THE RESULTS OF THE GAME AS WELL AS THE COUNTDOWN VARIABLES
+    
+    */
+
+    var gameTimer = 31;
+    var gameValID;
+    var wins = 0;
+    var losses = 0;
+    var attempts = 0;
+
+
+
 
     function gameStart() {
 
@@ -262,40 +278,130 @@ $(document).ready(function () {
         $("#answerSelections").append(wrongAnswerThreeInput);
         $('#btnWrongThree').text(wrongAnswer3);
 
+        $('#btnAnswer').on("click", function () {
+            wins++;
+            attempts++;
+            console.log("win");
+            console.log("wins: " + wins);
+            console.log("attempts: " + attempts);
+            gameTimer = 31;
+            gameStart();
+        });
+        $('#btnWrongOne').on('click', function () {
+            losses++;
+            attempts++;
+            console.log("Lose");
+            console.log(losses);
+            console.log(attempts);
+            gameTimer = 31;
+            gameStart();
+
+        });
+        $('#btnWrongTwo').on('click', function () {
+            losses++;
+            attempts++;
+            console.log("Lose");
+            console.log(losses);
+            console.log(attempts);
+            gameTimer = 31;
+            gameStart();
+
+        });
+        $('#btnWrongThree').on('click', function () {
+            losses++;
+            attempts++;
+            console.log("Lose");
+            console.log(losses);
+            console.log(attempts);
+            gameTimer = 31;
+            gameStart();
+
+        });
+
+
+
+
+
 
 
         console.log(correctAnswer)
 
-        function run() {
-            console.log("In Game Run");
-            clearInterval(intervalId);
-            intervalId = setInterval(decrement, 1000);
+        inGameRun();
 
-
+        if (attempts === 10) {
+            gameOver();
+            console.log('GAME OVER');
         }
 
 
 
-        run();
 
-        function decrement() {
-            gameTimer--;
-            console.log("In Game Timer");
-            var inGameTimer = $('<div id=gameTimeLeft>');
-            $('container').html(inGameTimer);
 
-            $('#gameTimeLeft').html(gameTimer);
 
-            if (number < 0) {
-                gameStart();
-                clearInterval(intervalId);
-
-            }
-        }
 
 
 
     }
+
+    function inGameRun() {
+        console.log("In Game Run");
+        clearInterval(gameValID);
+        gameValID = setInterval(countdown, 1000);
+
+
+    }
+
+
+
+    function countdown() {
+        gameTimer--;
+        console.log("In Game Timer");
+        var inGameTimer = $('<div id=gameTimeLeft>');
+        $('.container').append(inGameTimer);
+
+        $('#gameTimeLeft').html(gameTimer);
+
+        if (gameTimer <= 0) {
+
+            clearInterval(gameValID);
+            gameStart();
+            gameTimer = 31;
+            console.log(gameValID);
+            console.log(gameTimer);
+
+
+        }
+    }
+
+    function gameOver() {
+        $('.container').empty();
+        $('#questionBlock').text("GAME OVER");
+
+
+    }
+
+    // ASK ABOUT THIS IN CLASS!!!!!
+
+    // function win() {
+    //     wins++;
+    //     attempts++;
+    //     console.log("win");
+    //     console.log("wins: " + wins);
+    //     console.log("attempts: " + attempts);
+    //     gameStart();
+
+    // }
+
+    // function lose() {
+    //     losses++;
+    //     attempts++;
+    //     console.log("Lose");
+    //     console.log(losses);
+    //     console.log(attempts);
+    //     gameStart();
+
+    // }
+
 
 
 
