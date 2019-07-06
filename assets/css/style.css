@@ -48,6 +48,10 @@ body {
     font-weight: bolder;
 }
 
+#answerSelections:hover{
+    cursor: pointer; 
+}
+
 .answerOptions {
     position: relative;
     width: 80%;
@@ -108,6 +112,18 @@ body {
     text-align: center;
     color: rgb(25, 83, 207);
     font-weight: bolder;
+
+}
+
+#winPic{
+
+    position: relative;
+    width: 80%;
+    height: 20%;  
+    margin: 8px auto;
+    margin-left: -8%;
+    margin-top: 8%;
+    top: -23%;
 
 }
 
