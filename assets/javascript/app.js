@@ -245,12 +245,7 @@ $(document).ready(function () {
                 return a;
             }
 
-            randomAnswersArray = [
-                0, 1, 2, 3
-            ];
 
-            shuffle(randomAnswersArray);
-            console.log("RAA: " + randomAnswersArray);
 
             console.log(randQuestionNumber);
 
@@ -271,7 +266,7 @@ $(document).ready(function () {
             var wrongThree = wrongAnswerThreeInput.text(wrongAnswer3);
 
 
-            console.log("AnswerOne:  " + answerOne);
+
 
 
 
@@ -285,7 +280,7 @@ $(document).ready(function () {
             selectionsArray.push(wrongTwo);
             selectionsArray.push(wrongThree);
 
-            selectionRandomizer = Math.floor(Math.random() * selectionsArray);
+
 
             console.log("before: " + selectionsArray);
             shuffle(selectionsArray);
@@ -494,8 +489,6 @@ $(document).ready(function () {
 
 
 
-
-
         function gameOver() {
             clearInterval(gameValID);
             clearInterval(endGameId);
@@ -546,16 +539,5 @@ $(document).ready(function () {
     }
 
     baseballTrivia();
-
-
-
-
-
-
-
-
-
-
-
 
 })
