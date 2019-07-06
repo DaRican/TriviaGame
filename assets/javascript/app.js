@@ -202,6 +202,7 @@ $(document).ready(function () {
             $('#firstTimerDiv').html(number);
 
 
+
             if (number < 0) {
                 gameStart();
                 clearInterval(intervalId);
@@ -233,18 +234,44 @@ $(document).ready(function () {
 
             var randQuestionNumber = Math.floor(Math.random() * questionArray.length);
 
+            function shuffle(a) {
+                var j, x, i;
+                for (i = a.length - 1; i > 0; i--) {
+                    j = Math.floor(Math.random() * (i + 1));
+                    x = a[i];
+                    a[i] = a[j];
+                    a[j] = x;
+                }
+                return a;
+            }
+
+            randomAnswersArray = [
+                0, 1, 2, 3
+            ];
+
+            shuffle(randomAnswersArray);
+            console.log("RAA: " + randomAnswersArray);
+
             console.log(randQuestionNumber);
 
-            var answerInput = $("<div id=btnAnswer class=answerOptions list=selections>");
+            var answerInput = $("<div id=btnAnswer value=0 class=answerOptions list=selections>");
 
-            var wrongAnswerOneInput = $("<div id=btnWrongOne class=answerOptions list=selections>");
-            var wrongAnswerTwoInput = $("<div id=btnWrongTwo class=answerOptions list=selections>");
-            var wrongAnswerThreeInput = $("<div id=btnWrongThree class=answerOptions list=selections>");
+            var wrongAnswerOneInput = $("<div id=btnWrongOne value=1 class=answerOptions list=selections>");
+            var wrongAnswerTwoInput = $("<div id=btnWrongTwo value=2 class=answerOptions list=selections>");
+            var wrongAnswerThreeInput = $("<div id=btnWrongThree value=3 class=answerOptions list=selections>");
 
             var correctAnswer = (questionArray[randQuestionNumber].answer);
             var wrongAnswer1 = (questionArray[randQuestionNumber].incorrectOne);
             var wrongAnswer2 = (questionArray[randQuestionNumber].incorrectTwo);
             var wrongAnswer3 = (questionArray[randQuestionNumber].incorrectThree);
+
+            var answerOne = answerInput.text(correctAnswer);
+            var wrongOne = wrongAnswerOneInput.text(wrongAnswer1);
+            var wrongTwo = wrongAnswerTwoInput.text(wrongAnswer2);
+            var wrongThree = wrongAnswerThreeInput.text(wrongAnswer3);
+
+
+            console.log("AnswerOne:  " + answerOne);
 
 
 
@@ -253,15 +280,16 @@ $(document).ready(function () {
 
             var selectionsArray = []
 
-            selectionsArray.push(correctAnswer);
-            selectionsArray.push(wrongAnswer1);
-            selectionsArray.push(wrongAnswer2);
-            selectionsArray.push(wrongAnswer3);
+            selectionsArray.push(answerOne);
+            selectionsArray.push(wrongOne);
+            selectionsArray.push(wrongTwo);
+            selectionsArray.push(wrongThree);
 
             selectionRandomizer = Math.floor(Math.random() * selectionsArray);
 
-
-
+            console.log("before: " + selectionsArray);
+            shuffle(selectionsArray);
+            console.log("after: " + selectionsArray);
 
 
 
@@ -270,15 +298,19 @@ $(document).ready(function () {
 
             $("#questionBlock").text(questionArray[randQuestionNumber].question);
 
+            $("#answerSelections").append(selectionsArray[0]);
+            $("#answerSelections").append(selectionsArray[1]);
+            $("#answerSelections").append(selectionsArray[2]);
+            $("#answerSelections").append(selectionsArray[3]);
 
-            $("#answerSelections").append(answerInput);
-            $("#btnAnswer").text(correctAnswer);
-            $("#answerSelections").append(wrongAnswerOneInput);
-            $('#btnWrongOne').text(wrongAnswer1);
-            $("#answerSelections").append(wrongAnswerTwoInput);
-            $('#btnWrongTwo').text(wrongAnswer2);
-            $("#answerSelections").append(wrongAnswerThreeInput);
-            $('#btnWrongThree').text(wrongAnswer3);
+            // $("#answerSelections").append(answerInput);
+            // $("#btnAnswer").text(selectionsArray[0]);
+            // $("#answerSelections").append(wrongAnswerOneInput);
+            // $('#btnWrongOne').text(selectionsArray[1]);
+            // $("#answerSelections").append(wrongAnswerTwoInput);
+            // $('#btnWrongTwo').text(selectionsArray[2]);
+            // $("#answerSelections").append(wrongAnswerThreeInput);
+            // $('#btnWrongThree').text(selectionsArray[3]);
 
             /* 
             MAKE THE BUTTONS CLICKABLE WITH FUNCTIONS FOR ALL OF THEM
@@ -364,15 +396,9 @@ $(document).ready(function () {
                 console.log('GAME OVER');
             }
 
-
-
-
-
-
-
-
-
         }
+
+
 
         var choiceNum = 4;
         var madeChoice;
