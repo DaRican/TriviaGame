@@ -447,6 +447,15 @@ $(document).ready(function () {
             if (endGameNum <= 0) {
 
                 clearInterval(endGameId);
+                endGameNum = 11;
+                choiceNum = 4;
+                gameTimer = 31;
+                gameValID;
+                wins = 0;
+                losses = 0;
+                attempts = 0;
+                notAnswered = 0;
+
                 baseballTrivia();
 
 
@@ -462,6 +471,9 @@ $(document).ready(function () {
 
 
         function gameOver() {
+            clearInterval(gameValID);
+            clearInterval(endGameId);
+
             $('#questionBlock').empty();
             $('#answerSelections').empty();
 
