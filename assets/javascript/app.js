@@ -183,15 +183,9 @@ $(document).ready(function () {
             function run() {
                 clearInterval(intervalId);
                 intervalId = setInterval(decrement, 1000);
-
-
             }
 
-
-
             run();
-
-
         }
 
         function decrement() {
@@ -200,8 +194,6 @@ $(document).ready(function () {
             var firstTimerDiv = $('<div id=firstTimerDiv>');
             $('#questionBlock').html(firstTimerDiv);
             $('#firstTimerDiv').html(number);
-
-
 
             if (number < 0) {
                 gameStart();
@@ -328,7 +320,7 @@ $(document).ready(function () {
 
 
             });
-            $('#btnWrongOne').on('click', function () {
+            $('#btnWrongOne,#btnWrongTwo,#btnWrongThree').on('click', function () {
                 losses++;
                 attempts++;
                 console.log("loss");
@@ -344,45 +336,41 @@ $(document).ready(function () {
                 choiceMadeCountdown();
 
             });
-            $('#btnWrongTwo').on('click', function () {
-                losses++;
-                attempts++;
-                console.log("loss");
-                console.log("loss: " + losses);
-                console.log("attempts: " + attempts);
-                gameTimer = 31;
-                var winDiv = $('<div id=winPic>');
-                $('#answerSelections').html(winDiv);
-                var winPic = $('<iframe src="https://giphy.com/embed/dRCpja8SByklq" ></iframe>');
-                $('#winPic').html(winPic);
-                $('#questionBlock').html("Wrong Answer");
-                clearInterval(gameValID);
-                choiceMadeCountdown();
-
-            });
-            $('#btnWrongThree').on('click', function () {
-                losses++;
-                attempts++;
-                console.log("loss");
-                console.log("loss: " + losses);
-                console.log("attempts: " + attempts);
-                gameTimer = 31;
-                var winDiv = $('<div id=winPic>');
-                $('#answerSelections').html(winDiv);
-                var winPic = $('<iframe src="https://giphy.com/embed/dRCpja8SByklq" ></iframe>');
-                $('#winPic').html(winPic);
-                $('#questionBlock').html("Wrong Answer");
-                clearInterval(gameValID);
-                choiceMadeCountdown();
-            });
-
-
-
-
-
 
 
             console.log(correctAnswer)
+
+            function inGameRun() {
+                console.log("In Game Run");
+                clearInterval(gameValID);
+                gameValID = setInterval(countdown, 1000);
+
+
+            }
+
+            function countdown() {
+                gameTimer--;
+                console.log("In Game Timer");
+                var inGameTimer = $('<div id=gameTimeLeft>');
+                $('.container').append(inGameTimer);
+
+                $('#gameTimeLeft').html(gameTimer);
+
+                if (gameTimer <= 0) {
+
+                    clearInterval(gameValID);
+                    gameStart();
+                    gameTimer = 31;
+                    notAnswered++;
+                    attempts++;
+                    console.log("Timed Out Attempt");
+                    console.log(gameValID);
+                    console.log(gameTimer);
+
+
+                }
+            }
+
 
             inGameRun();
 
@@ -405,36 +393,6 @@ $(document).ready(function () {
 
         }
 
-        function inGameRun() {
-            console.log("In Game Run");
-            clearInterval(gameValID);
-            gameValID = setInterval(countdown, 1000);
-
-
-        }
-
-        function countdown() {
-            gameTimer--;
-            console.log("In Game Timer");
-            var inGameTimer = $('<div id=gameTimeLeft>');
-            $('.container').append(inGameTimer);
-
-            $('#gameTimeLeft').html(gameTimer);
-
-            if (gameTimer <= 0) {
-
-                clearInterval(gameValID);
-                gameStart();
-                gameTimer = 31;
-                notAnswered++;
-                attempts++;
-                console.log("Timed Out Attempt");
-                console.log(gameValID);
-                console.log(gameTimer);
-
-
-            }
-        }
 
         function choiceDecrement() {
             choiceNum--;
